@@ -24,7 +24,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
     position: relative;
@@ -63,15 +63,13 @@ body {
 
 .search-container {
     width: 100%;
-    max-width: 800px;
     margin: 0 auto 3rem;
-    position: relative;
 }
 
 .search-bar {
     width: 100%;
-    padding: 1.2rem 1.5rem;
-    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
     border: none;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -93,78 +91,49 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
-.search-btn {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
-    border: none;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 10px var(--neon-pink);
-    transition: all 0.3s ease;
-}
-
-.search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--neon-pink);
-}
-
-.results-container {
+.links-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
-.site-card {
-    background: rgba(13, 2, 33, 0.7);
-    border-radius: 10px;
-    padding: 1.5rem;
-    border: 1px solid rgba(5, 217, 232, 0.2);
+.neon-link {
+    display: block;
+    padding: 1.2rem;
+    text-align: center;
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid var(--neon-blue);
+    border-radius: 8px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    background-color: rgba(5, 217, 232, 0.05);
 }
 
-.site-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(5, 217, 232, 0.3);
-    border: 1px solid var(--neon-blue);
+.neon-link:hover {
+    color: white;
+    background-color: rgba(5, 217, 232, 0.2);
+    box-shadow: 0 0 15px var(--neon-blue);
+    transform: translateY(-3px);
 }
 
-.site-card::before {
+.neon-link::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(5, 217, 232, 0.2), transparent);
+    transition: all 0.5s ease;
 }
 
-.site-title {
-    font-size: 1.3rem;
-    margin: 0 0 0.5rem;
-    color: var(--neon-blue);
-}
-
-.site-url {
-    color: var(--neon-pink);
-    font-size: 0.9rem;
-    margin: 0 0 1rem;
-    word-break: break-all;
-}
-
-.site-desc {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.5;
+.neon-link:hover::before {
+    left: 100%;
 }
 
 .glow {
@@ -201,7 +170,7 @@ body {
         font-size: 2.5rem;
     }
     
-    .results-container {
+    .links-container {
         grid-template-columns: 1fr;
     }
 }
