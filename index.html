@@ -1,14 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Link Index</title>
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Emblema+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      width: 320px;
+      padding: 10px;
+      font-family: Alata;
+      font-weight: 800;
+      background: black;
+      color: white;
+    }
+    
+    #search {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 2px solid white;
+      font-family: Alata;
+      font-weight: 800;
+      outline: none;
+      background: black;
+      color: white;
+    }
+
+    #search:focus {
+      outline: none;
+      border-color: white;
+    }
+
+    #links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 2px solid white;
+      padding-bottom: 2px;
+      margin-bottom: 3px;
+      display: inline-block;
+      text-transform: uppercase ;
+    }
+
+    a:hover {
+      color: white;
+      border-bottom-color: white;
+    }
+
+    .no-results {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    
-    
-    <script src="script.js"></script>
+  <input type="text" id="search" placeholder="Search links...">
+  <div id="links-container"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('search');
+      const linksContainer = document.getElementById('links-container');
+      
+      // Sample links - replace with your actual links or fetch them
+      const links = [
+        { title: "MkvCinemas - Bollywood and Hollywood", url: "https://mkvcinemas.onl/" },
+        { title: "moviesmod - Hollywood, Dramas, Animes", url: "https://moviesmod.email/" },
+        { title: "greasyfork : temper monkey script searching", url: "https://greasyfork.org/en" },
+      ];
+      
+      // Display all links initially
+      displayLinks(links);
+      
+      // Filter links when typing in search
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredLinks = links.filter(link => 
+          link.title.toLowerCase().includes(searchTerm) || 
+          link.url.toLowerCase().includes(searchTerm)
+        );
+        displayLinks(filteredLinks);
+      });
+      
+      function displayLinks(linksToShow) {
+        if (linksToShow.length === 0) {
+          linksContainer.innerHTML = '<p class="no-results">No matching links found</p>';
+          return;
+        }
+        
+        linksContainer.innerHTML = '';
+        linksToShow.forEach(link => {
+          const linkElement = document.createElement('a');
+          linkElement.href = link.url;
+          linkElement.textContent = link.title;
+          linkElement.target = '_blank';
+          linksContainer.appendChild(linkElement);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
